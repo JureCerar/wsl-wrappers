@@ -1,6 +1,6 @@
-## wsl-Wrappers
+## WSL-Wrappers
 
-There are a lot of useful scientific programs available for Linux, but best of luck compiling it on Windows. Fortunately, Windows Subsystem for Linux (WSL) is a thing! This is a simple script that generate wrappers for calling functions from WSL in Windows.
+There are a lot of useful (scientific) software available for Linux, but best of luck compiling it on Windows systems. Fortunately, Windows Subsystem for Linux (WSL) is a thing now! You don't need to install software on Windows you just need it to install it in WSL and then create a wrapper that can call it from Windows. This is a simple tool to generate and manage wrappers. 
 
 ## Installation
 
@@ -12,38 +12,30 @@ cd ./wsl-wrappers
 pip install .
 ```
 
-## Usage
+## Example
 
 First you need to initialize WSL-Wrappers with:
 
 ```shell
 wsl-wrappers init
-
 ```
 
-This adds WSL-Wrappers root directory (where wrappers scripts are located) to user's PATH; by default this is `%USERPROFILE%\wsl-wrappers`. Then you can add, remove, and list packages 
+This adds WSL-Wrappers root directory (by default this is `%USERPROFILE%\wsl-wrappers`) to user's PATH. Then you can add, remove, and list wrappers with: 
 
 ```shell
-wsl-wrappers add ls
-# INFO:root:Adding wrapper alias: 'ls' -> 'ls'
-wsl-wrappers add ls 'ls -a'
-# INFO:root:Adding wrapper alias: 'ls' -> 'ls -a'
+wsl-wrappers add jackhmmer
+# Adding wrapper alias: 'jackhmmer' -> 'jackhmmer'
 
 wsl-wrappers list
 # WSL-Wrappers:
-# ls
+# jackhmmer
 
-wsl-wrappers remove ls
-# INFO:root:Removing alias: ls
+wsl-wrappers remove jackhmmer
+# INFO:root:Removing alias: 'jackhmmer'
 ```
 
-To install the package simply type:
-
-
-
-clustalw.bat
-
-
+> [!NOTE]
+> Needless to say you need to have WSL installed on your system to use this tool. Follow these instructions on [How to install WSL](https://learn.microsoft.com/en-us/windows/wsl/install). You also need to install software within WSL in order to call it (obviously), e.g. `jackhmmer`.
 
 ## License
 

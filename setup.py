@@ -33,8 +33,8 @@ setuptools.setup(
     long_description=readme,
     long_description_content_type="text/markdown",
     license="GNU GPL 3.0",
-    python_requires=">=3.6.0",
-    url="https://github.com/JureCerar/",
+    python_requires=">=3.10.0",
+    url="https://github.com/JureCerar/wsl-wrappers",
     author="Jure Cerar",
     packages=setuptools.find_packages(),
     entry_points={
