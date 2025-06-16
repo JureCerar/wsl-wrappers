@@ -21,8 +21,8 @@ import re
 from pathlib import Path
 
 __author__ = "Jure Cerar"
-__date__ = "25 May 2025"
-__version__ = "0.1.1"
+__date__ = "17 June 2025"
+__version__ = "0.2.0"
 
 
 # Root directory for WSL wrappers
@@ -72,14 +72,14 @@ def add(alias: str, command: str = None) -> None:
     if not ROOT_DIR.is_dir():
         ROOT_DIR.mkdir()
     # Find template and modify it for alias
-    filename = Path(__file__).parent.joinpath("template.bat")
+    filename = Path(__file__).parent.joinpath("template.ps1")
     if not filename.is_file():
         raise FileExistsError("Cannot find template file")
     with filename.open("r") as f:
         template = f.read()
     template = template.replace("%WSL_COMMAND%", alias)
     # Write template to new alias
-    filename = ROOT_DIR.joinpath(alias + ".bat")
+    filename = ROOT_DIR.joinpath(alias + ".ps1")
     with filename.open("w") as f:
         f.write(template)
 
@@ -95,7 +95,7 @@ def rm(alias: str) -> None:
     # Check for directory
     if not ROOT_DIR.is_dir():
         raise ValueError("Root directory not found")
-    filename = ROOT_DIR / (alias + ".bat")
+    filename = ROOT_DIR / (alias + ".ps1")
     if not filename.is_file():
         raise ValueError("File not found")
     logging.debug(f"Removing file '{filename}'")
@@ -109,8 +109,9 @@ def ls() -> None:
         raise ValueError("WSL-wrapper not initialized")
     # List all files
     print("# WSL-Wrappers:")
+    print("# Root-dir:", ROOT_DIR)
     print("#")
-    for file in ROOT_DIR.glob("*.bat"):
+    for file in ROOT_DIR.glob("*.ps1"):
         print(file.stem)
 
 

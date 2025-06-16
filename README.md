@@ -12,6 +12,9 @@ cd ./wsl-wrappers
 pip install .
 ```
 
+> [!NOTE]
+> Needless to say you need to have WSL installed on your system to use this tool. Follow these instructions on [How to install WSL](https://learn.microsoft.com/en-us/windows/wsl/install). You also need to install software within WSL in order to call it (obviously), e.g. `jackhmmer`.
+
 ## Example
 
 First you need to initialize WSL-Wrappers with:
@@ -20,7 +23,7 @@ First you need to initialize WSL-Wrappers with:
 wsl-wrappers init
 ```
 
-This adds WSL-Wrappers root directory (by default this is `%USERPROFILE%\wsl-wrappers`) to user's PATH. Then you can add, remove, and list wrappers with: 
+This adds WSL-Wrappers root directory (by default this is `%USERPROFILE%\wsl-wrappers`) to user's PATH. Then you can add, remove, or list wrappers with: 
 
 ```shell
 wsl-wrappers add jackhmmer
@@ -31,11 +34,8 @@ wsl-wrappers list
 # jackhmmer
 
 wsl-wrappers remove jackhmmer
-# INFO:root:Removing alias: 'jackhmmer'
+# Removing alias: 'jackhmmer'
 ```
-
-> [!NOTE]
-> Needless to say you need to have WSL installed on your system to use this tool. Follow these instructions on [How to install WSL](https://learn.microsoft.com/en-us/windows/wsl/install). You also need to install software within WSL in order to call it (obviously), e.g. `jackhmmer`.
 
 ## License
 

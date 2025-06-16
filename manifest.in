@@ -1,1 +1,2 @@
 include wsl_wrappers/*.bat
+include wsl_wrappers/*.ps1
