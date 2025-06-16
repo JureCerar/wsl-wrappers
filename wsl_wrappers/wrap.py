@@ -71,15 +71,25 @@ def add(alias: str, command: str = None) -> None:
     # Check for ROOT directory
     if not ROOT_DIR.is_dir():
         ROOT_DIR.mkdir()
-    # Find template and modify it for alias
+    # Find PS1 template and modify it for alias
     filename = Path(__file__).parent.joinpath("template.ps1")
     if not filename.is_file():
-        raise FileExistsError("Cannot find template file")
+        raise FileExistsError("Cannot find PS1 template file")
     with filename.open("r") as f:
         template = f.read()
     template = template.replace("%WSL_COMMAND%", alias)
     # Write template to new alias
     filename = ROOT_DIR.joinpath(alias + ".ps1")
+    with filename.open("w") as f:
+        f.write(template)
+    # Find BAT template and modify it for alias
+    filename = Path(__file__).parent.joinpath("template.bat")
+    if not filename.is_file():
+        raise FileExistsError("Cannot find BAT template file")
+    with filename.open("r") as f:
+        template = f.read()
+    template = template.replace("%WSL_COMMAND%", alias)
+    filename = ROOT_DIR.joinpath(alias + ".bat")
     with filename.open("w") as f:
         f.write(template)
 
@@ -95,12 +105,18 @@ def rm(alias: str) -> None:
     # Check for directory
     if not ROOT_DIR.is_dir():
         raise ValueError("Root directory not found")
+    # Remove PS1 file
     filename = ROOT_DIR / (alias + ".ps1")
     if not filename.is_file():
         raise ValueError("File not found")
     logging.debug(f"Removing file '{filename}'")
     filename.unlink()
-
+    # Remove BAT file
+    filename = ROOT_DIR / (alias + ".bat")
+    if not filename.is_file():
+        raise ValueError("File not found")
+    logging.debug(f"Removing file '{filename}'")
+    filename.unlink()
 
 def ls() -> None:
     """List all WSL wrappers
