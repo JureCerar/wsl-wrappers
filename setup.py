@@ -37,6 +37,7 @@ setuptools.setup(
     url="https://github.com/JureCerar/wsl-wrappers",
     author="Jure Cerar",
     packages=setuptools.find_packages(),
+    include_package_data=True,
     entry_points={
         "console_scripts": [
             "wsl-wrappers=wsl_wrappers.wrap:main",
